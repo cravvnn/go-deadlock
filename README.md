@@ -12,8 +12,32 @@ implements the GC protocol for Deadlock, reusing the patterns from
 
 The protobuf definitions come from the
 [SteamDatabase/Protobufs](https://github.com/SteamDatabase/Protobufs)
-repository, vendored as a git submodule (`deadlock/` tree).
+repository, vendored as a git submodule (`deadlock/` tree). Code generation
+uses the [aperturerobotics/common](https://github.com/aperturerobotics/common)
+WASI protoc toolchain (protobuf-go-lite output only).
 
-## Status
+## Usage
 
-Scaffold. Not yet implemented.
+```go
+cl := steam.NewClient(...)
+dl := deadlock.New(cl, logrus.StandardLogger())
+// connect, then:
+dl.SetPlaying(true) // sets app 1422450 as played
+dl.SayHello()       // request a GC session; wait for events.ClientWelcomed
+```
+
+## Implementation Progress
+
+ - [x] GC session state management (hello / welcome / connection status)
+ - [x] Request tracking (`MakeRequest` with response matching)
+ - [x] SOCache shared-object cache
+ - [x] Generated API surface from `EGCCitadelClientMessages` (64 methods)
+ - [x] Generated GC-to-client events
+ - [ ] Deadlock-specific SO cache type IDs (await live capture)
+ - [ ] Party / lobby convenience helpers
+
+## Regenerating protobufs
+
+```sh
+make gen    # update submodule protos, regenerate protocol/, apigen, format
+```

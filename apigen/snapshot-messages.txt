@@ -1,0 +1,158 @@
+9010	CLIENT	k_EMsgClientToGCStartMatchmaking	StartMatchmaking
+9011	GC    	k_EMsgClientToGCStartMatchmakingResponse
+9012	CLIENT	k_EMsgClientToGCStopMatchmaking	StopMatchmaking
+9013	GC    	k_EMsgClientToGCStopMatchmakingResponse
+9014	GC    	k_EMsgGCToClientMatchmakingStopped
+9015	CLIENT	k_EMsgClientToGCLeaveLobby	LeaveLobby
+9016	GC    	k_EMsgClientToGCLeaveLobbyResponse
+9017	CLIENT	k_EMsgClientToGCIsInMatchmaking	SendIsInMatchmaking
+9018	GC    	k_EMsgClientToGCIsInMatchmakingResponse
+9019	GC    	k_EMsgGCToClientDevPlaytestStatus
+9023	CLIENT	k_EMsgClientToGCDevSetMMBias	SetDevMMBias
+9024	CLIENT	k_EMsgClientToGCGetProfileCard	GetProfileCard
+9025	GC    	k_EMsgClientToGCGetProfileCardResponse
+9026	CLIENT	k_EMsgClientToGCUpdateRoster	SendUpdateRoster
+9027	GC    	k_EMsgClientToGCUpdateRosterResponse
+9028	GC    	k_EMsgGCToClientProfileCardUpdated
+9029	GC    	k_EMsgGCToClientDevAnnouncements
+9030	CLIENT	k_EMsgClientToGCModifyDevAnnouncements	SendModifyDevAnnouncements
+9031	GC    	k_EMsgClientToGCModifyDevAnnouncementsResponse
+9100	GC    	k_EMsgGCToClientSDRTicket
+9101	CLIENT	k_EMsgClientToGCReplacementSDRTicket	SendReplacementSDRTicket
+9102	GC    	k_EMsgClientToGCReplacementSDRTicketResponse
+9107	CLIENT	k_EMsgClientToGCSetServerConVar	SetServerConVar
+9108	GC    	k_EMsgClientToGCSetServerConVarResponse
+9109	CLIENT	k_EMsgClientToGCSpectateLobby	SpectateLobby
+9110	GC    	k_EMsgClientToGCSpectateLobbyResponse
+9111	GC    	k_EMsgClientToGCPostMatchSurveyResponse
+9112	CLIENT	k_EMsgClientToGCGetMatchHistory	GetMatchHistory
+9113	GC    	k_EMsgClientToGCGetMatchHistoryResponse
+9116	CLIENT	k_EMsgClientToGCSpectateUser	SpectateUser
+9117	GC    	k_EMsgClientToGCSpectateUserResponse
+9123	CLIENT	k_EMsgClientToGCPartyCreate	CreateParty
+9124	GC    	k_EMsgClientToGCPartyCreateResponse
+9125	CLIENT	k_EMsgClientToGCPartyLeave	LeaveParty
+9126	GC    	k_EMsgClientToGCPartyLeaveResponse
+9127	CLIENT	k_EMsgClientToGCPartyJoin	JoinParty
+9128	GC    	k_EMsgClientToGCPartyJoinResponse
+9129	CLIENT	k_EMsgClientToGCPartyAction	SendPartyAction
+9130	GC    	k_EMsgClientToGCPartyActionResponse
+9131	CLIENT	k_EMsgClientToGCPartyStartMatch	StartPartyMatch
+9132	GC    	k_EMsgClientToGCPartyStartMatchResponse
+9133	CLIENT	k_EMsgClientToGCPartyInviteUser	SendPartyInviteUser
+9134	GC    	k_EMsgClientToGCPartyInviteUserResponse
+9135	GC    	k_EMsgGCToClientPartyEvent
+9137	GC    	k_EMsgGCToClientCanRejoinParty
+9138	CLIENT	k_EMsgClientToGCPartyJoinViaCode	JoinPartyViaCode
+9139	GC    	k_EMsgClientToGCPartyJoinViaCodeResponse
+9142	CLIENT	k_EMsgClientToGCPartySetReadyState	SetPartyReadyState
+9143	GC    	k_EMsgClientToGCPartySetReadyStateResponse
+9164	CLIENT	k_EMsgClientToGCGetAccountStats	GetAccountStats
+9165	GC    	k_EMsgClientToGCGetAccountStatsResponse
+9166	N/A   	k_EMsgGCToClientAccountStatsUpdated
+9167	CLIENT	k_EMsgClientToGCGetMatchMetaData	GetMatchMetaData
+9168	GC    	k_EMsgClientToGCGetMatchMetaDataResponse
+9172	CLIENT	k_EMsgClientToGCDevAction	SendDevAction
+9173	GC    	k_EMsgClientToGCDevActionResponse
+9174	CLIENT	k_EMsgClientToGCRecordClientEvents	RecordClientEvents
+9175	GC    	k_EMsgClientToGCRecordClientEventsResponse
+9176	CLIENT	k_EMsgClientToGCSetNewPlayerProgress	SetNewPlayerProgress
+9177	GC    	k_EMsgClientToGCSetNewPlayerProgressResponse
+9178	CLIENT	k_EMsgClientToGCUpdateAccountSync	SendUpdateAccountSync
+9179	GC    	k_EMsgClientToGCUpdateAccountSyncResponse
+9180	CLIENT	k_EMsgClientToGCGetHeroChoice	GetHeroChoice
+9181	GC    	k_EMsgClientToGCGetHeroChoiceResponse
+9182	CLIENT	k_EMsgClientToGCUnlockHero	SendUnlockHero
+9183	GC    	k_EMsgClientToGCUnlockHeroResponse
+9184	CLIENT	k_EMsgClientToGCBookUnlock	SendBookUnlock
+9185	GC    	k_EMsgClientToGCBookUnlockResponse
+9186	CLIENT	k_EMsgClientToGCGetBook	GetBook
+9187	GC    	k_EMsgClientToGCGetBookResponse
+9188	GC    	k_EMsgGCToClientBookUpdated
+9189	CLIENT	k_EMsgClientToGCSubmitPlaytestUser	SubmitPlaytestUser
+9190	GC    	k_EMsgClientToGCSubmitPlaytestUserResponse
+9193	CLIENT	k_EMsgClientToGCUpdateHeroBuild	SendUpdateHeroBuild
+9194	GC    	k_EMsgClientToGCUpdateHeroBuildResponse
+9195	CLIENT	k_EMsgClientToGCFindHeroBuilds	FindHeroBuilds
+9196	GC    	k_EMsgClientToGCFindHeroBuildsResponse
+9197	CLIENT	k_EMsgClientToGCReportPlayerFromMatch	ReportPlayerFromMatch
+9198	GC    	k_EMsgClientToGCReportPlayerFromMatchResponse
+9199	CLIENT	k_EMsgClientToGCGetAccountMatchReports	GetAccountMatchReports
+9200	GC    	k_EMsgClientToGCGetAccountMatchReportsResponse
+9201	CLIENT	k_EMsgClientToGCDeleteHeroBuild	SendDeleteHeroBuild
+9202	GC    	k_EMsgClientToGCDeleteHeroBuildResponse
+9203	CLIENT	k_EMsgClientToGCGetActiveMatches	GetActiveMatches
+9204	GC    	k_EMsgClientToGCGetActiveMatchesResponse
+9205	CLIENT	k_EMsgClientToGCGetDiscordLink	GetDiscordLink
+9206	GC    	k_EMsgClientToGCGetDiscordLinkResponse
+9207	CLIENT	k_EMsgClientToGCPartySetMode	SetPartyMode
+9208	GC    	k_EMsgClientToGCPartySetModeResponse
+9209	CLIENT	k_EMsgClientToGCGrantForumAccess	GrantForumAccess
+9210	GC    	k_EMsgClientToGCGrantForumAccessResponse
+9211	CLIENT	k_EMsgClientToGCModeratorRequest	RequestModerator
+9212	GC    	k_EMsgClientToGCModeratorRequestResponse
+9213	CLIENT	k_EMsgClientToGCGetFriendGameStatus	GetFriendGameStatus
+9214	GC    	k_EMsgClientToGCGetFriendGameStatusResponse
+9215	CLIENT	k_EMsgClientToGCUpdateHeroBuildPreference	SendUpdateHeroBuildPreference
+9216	GC    	k_EMsgClientToGCUpdateHeroBuildPreferenceResponse
+9219	CLIENT	k_EMsgClientToGCUpdateSpectatorStatus	SendUpdateSpectatorStatus
+9223	CLIENT	k_EMsgClientToGCCommendPlayerFromMatch	SendCommendPlayerFromMatch
+9224	GC    	k_EMsgClientToGCCommendPlayerFromMatchResponse
+9225	GC    	k_EMsgGCToClientCommendNotification
+9228	N/A   	k_EMsgGCToClientHeroLabsSchedule
+9230	CLIENT	k_EMsgClientToGCDevRequestCheatReports	RequestDevCheatReports
+9231	GC    	k_EMsgClientToGCDevRequestCheatReportsResponse
+9232	N/A   	k_EMsgClientToGCDevBan
+9233	N/A   	k_EMsgClientToGCDevBanResponse
+9234	CLIENT	k_EMsgClientToGCGetHeroMMRRankings	GetHeroMMRRankings
+9235	GC    	k_EMsgClientToGCGetHeroMMRRankingsResponse
+9236	CLIENT	k_EMsgClientToGCGetLeaderboard	GetLeaderboard
+9237	GC    	k_EMsgClientToGCGetLeaderboardResponse
+9238	CLIENT	k_EMsgClientToGCGetAccountLeaderboards	GetAccountLeaderboards
+9239	GC    	k_EMsgClientToGCGetAccountLeaderboardsResponse
+9242	N/A   	k_EMsgClientToGCTarotGetUserData
+9243	N/A   	k_EMsgClientToGCTarotGetUserDataResponse
+9244	N/A   	k_EMsgGCToClientTarotUserDataUpdated
+9245	N/A   	k_EMsgClientToGCTarotPlaceTile
+9246	N/A   	k_EMsgClientToGCTarotPlaceTileResponse
+9247	N/A   	k_EMsgClientToGCTarotApplyRune
+9248	N/A   	k_EMsgClientToGCTarotApplyRuneResponse
+9249	N/A   	k_EMsgClientToGCTarotCompleteBoard
+9250	N/A   	k_EMsgClientToGCTarotCompleteBoardResponse
+9251	N/A   	k_EMsgClientToGCTarotDevCreateTile
+9252	N/A   	k_EMsgClientToGCTarotDevCreateTileResponse
+9253	N/A   	k_EMsgClientToGCTarotDevCreateBoard
+9254	N/A   	k_EMsgClientToGCTarotDevCreateBoardResponse
+9255	N/A   	k_EMsgClientToGCTarotDevGenerateTestTiles
+9256	N/A   	k_EMsgClientToGCTarotDevGenerateTestTilesResponse
+9257	N/A   	k_EMsgClientToGCTarotDevModifyEnergy
+9258	N/A   	k_EMsgClientToGCTarotDevModifyEnergyResponse
+9259	CLIENT	k_EMsgClientToGCGenerateChallengeSet	SetChallengeGenerate
+9260	GC    	k_EMsgClientToGCGenerateChallengeSetResponse
+9261	CLIENT	k_EMsgClientToGCChallengeActivate	SendChallengeActivate
+9262	GC    	k_EMsgClientToGCChallengeActivateResponse
+9263	CLIENT	k_EMsgClientToGCChallengeClaim	ClaimChallenge
+9264	GC    	k_EMsgClientToGCChallengeClaimResponse
+9265	CLIENT	k_EMsgClientToGCChallengeCancel	CancelChallenge
+9266	GC    	k_EMsgClientToGCChallengeCancelResponse
+9267	CLIENT	k_EMsgClientToGCGetSurveyQuestion	GetSurveyQuestion
+9268	GC    	k_EMsgClientToGCGetSurveyQuestionResponse
+9269	CLIENT	k_EMsgClientToGCSubmitSurvey	SubmitSurvey
+9270	GC    	k_EMsgClientToGCSubmitSurveyResponse
+9271	CLIENT	k_EMsgClientToGCGetRankData	GetRankData
+9272	GC    	k_EMsgGCToClientGetRankDataResponse
+9273	GC    	k_EMsgGCToClientRankDataUpdate
+9274	CLIENT	k_EMsgClientToGCGetHideoutSDRTicket	GetHideoutSDRTicket
+9275	GC    	k_EMsgClientToGCGetHideoutSDRTicketResponse
+9276	CLIENT	k_EMsgClientToGCSubmitHeroReleaseVote	SubmitHeroReleaseVote
+9277	CLIENT	k_EMsgClientToGCPartySendChatMsg	SendPartyChatMsg
+9278	GC    	k_EMsgClientToGCPartySendChatMsgResponse
+9279	GC    	k_EMsgGCToClientPartyChatMsg
+9280	CLIENT	k_EMsgClientToGCRequestHeroReleaseVoteTally	RequestHeroReleaseVoteTally
+9281	GC    	k_EMsgGCToClientUpdateHeroReleaseVoteTally
+9282	CLIENT	k_EMsgClientToGCSetAccountPrivacySetting	SetAccountPrivacySetting
+9283	GC    	k_EMsgClientToGCSetAccountPrivacySettingResponse
+9289	CLIENT	k_EMsgClientToGCStartRankedInterval	StartRankedInterval
+9290	GC    	k_EMsgClientToGCStartRankedIntervalResponse
+
+Computed client methods: [StartMatchmaking StopMatchmaking LeaveLobby SendIsInMatchmaking SetDevMMBias GetProfileCard SendUpdateRoster SendModifyDevAnnouncements SendReplacementSDRTicket SetServerConVar SpectateLobby GetMatchHistory SpectateUser CreateParty LeaveParty JoinParty SendPartyAction StartPartyMatch SendPartyInviteUser JoinPartyViaCode SetPartyReadyState GetAccountStats GetMatchMetaData SendDevAction RecordClientEvents SetNewPlayerProgress SendUpdateAccountSync GetHeroChoice SendUnlockHero SendBookUnlock GetBook SubmitPlaytestUser SendUpdateHeroBuild FindHeroBuilds ReportPlayerFromMatch GetAccountMatchReports SendDeleteHeroBuild GetActiveMatches GetDiscordLink SetPartyMode GrantForumAccess RequestModerator GetFriendGameStatus SendUpdateHeroBuildPreference SendUpdateSpectatorStatus SendCommendPlayerFromMatch RequestDevCheatReports GetHeroMMRRankings GetLeaderboard GetAccountLeaderboards SetChallengeGenerate SendChallengeActivate ClaimChallenge CancelChallenge GetSurveyQuestion SubmitSurvey GetRankData GetHideoutSDRTicket SubmitHeroReleaseVote SendPartyChatMsg RequestHeroReleaseVoteTally SetAccountPrivacySetting StartRankedInterval]

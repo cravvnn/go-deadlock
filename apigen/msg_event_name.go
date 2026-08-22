@@ -1,0 +1,21 @@
+package main
+
+import (
+	"strings"
+
+	gcm "github.com/paralin/go-deadlock/protocol"
+)
+
+// GetMessageEventName returns the event name for the message.
+func GetMessageEventName(msg gcm.EGCCitadelClientMessages) string {
+	if over, ok := msgEventNameOverrides[msg]; ok {
+		return over
+	}
+
+	msgName := msg.String()
+	msgName = strings.TrimPrefix(msgName, "k_EMsg")
+	msgName = strings.TrimPrefix(msgName, "GC")
+	msgName = strings.TrimPrefix(msgName, "ToClient")
+	msgName = strings.ReplaceAll(msgName, "_", "")
+	return msgName
+}
