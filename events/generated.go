@@ -5,8 +5,8 @@ import (
 	"github.com/paralin/go-deadlock/protocol"
 )
 
-// BookUpdated event.
-// MessageID: k_EMsgGCToClientBookUpdated
+// BookUpdated is emitted when the GC pushes updated hero book state, such as
+// after a book purchase.
 type BookUpdated struct {
 	protocol.CMsgGCToClientBookUpdated
 }
@@ -26,8 +26,8 @@ func (e *BookUpdated) GetEventName() string {
 	return "BookUpdated"
 }
 
-// CanRejoinParty event.
-// MessageID: k_EMsgGCToClientCanRejoinParty
+// CanRejoinParty is emitted when the GC determines your account may rejoin a
+// party it was disconnected from.
 type CanRejoinParty struct {
 	protocol.CMsgGCToClientCanRejoinParty
 }
@@ -47,8 +47,7 @@ func (e *CanRejoinParty) GetEventName() string {
 	return "CanRejoinParty"
 }
 
-// CommendNotification event.
-// MessageID: k_EMsgGCToClientCommendNotification
+// CommendNotification is emitted when another player commends your account.
 type CommendNotification struct {
 	protocol.CMsgGCToClientCommendNotification
 }
@@ -68,8 +67,7 @@ func (e *CommendNotification) GetEventName() string {
 	return "CommendNotification"
 }
 
-// DevAnnouncements event.
-// MessageID: k_EMsgGCToClientDevAnnouncements
+// DevAnnouncements is emitted with the current in-client announcements.
 type DevAnnouncements struct {
 	protocol.CMsgGCToClientDevAnnouncements
 }
@@ -89,8 +87,9 @@ func (e *DevAnnouncements) GetEventName() string {
 	return "DevAnnouncements"
 }
 
-// DevPlaytestStatus event.
-// MessageID: k_EMsgGCToClientDevPlaytestStatus
+// DevPlaytestStatus is an event delivered by the GC.
+//
+// Message: k_EMsgGCToClientDevPlaytestStatus (CMsgGCToClientDevPlaytestStatus).
 type DevPlaytestStatus struct {
 	protocol.CMsgGCToClientDevPlaytestStatus
 }
@@ -110,8 +109,9 @@ func (e *DevPlaytestStatus) GetEventName() string {
 	return "DevPlaytestStatus"
 }
 
-// MatchmakingStopped event.
-// MessageID: k_EMsgGCToClientMatchmakingStopped
+// MatchmakingStopped is emitted when the GC removes the account from the
+// matchmaking queue, either because the client requested it or because the GC
+// aborted the search.
 type MatchmakingStopped struct {
 	protocol.CMsgGCToClientMatchmakingStopped
 }
@@ -131,8 +131,9 @@ func (e *MatchmakingStopped) GetEventName() string {
 	return "MatchmakingStopped"
 }
 
-// PartyChatMsg event.
-// MessageID: k_EMsgGCToClientPartyChatMsg
+// PartyChatMsg is an event delivered by the GC.
+//
+// Message: k_EMsgGCToClientPartyChatMsg (CMsgGCToClientPartyChatMsg).
 type PartyChatMsg struct {
 	protocol.CMsgGCToClientPartyChatMsg
 }
@@ -152,8 +153,8 @@ func (e *PartyChatMsg) GetEventName() string {
 	return "PartyChatMsg"
 }
 
-// PartyEvent event.
-// MessageID: k_EMsgGCToClientPartyEvent
+// PartyEvent is emitted when something in your party changes: membership,
+// readiness, or match state.
 type PartyEvent struct {
 	protocol.CMsgGCToClientPartyEvent
 }
@@ -173,8 +174,8 @@ func (e *PartyEvent) GetEventName() string {
 	return "PartyEvent"
 }
 
-// ProfileCardUpdated event.
-// MessageID: k_EMsgGCToClientProfileCardUpdated
+// ProfileCardUpdated is emitted with the profile card of an account, usually
+// in reply to GetProfileCard.
 type ProfileCardUpdated struct {
 	protocol.CMsgCitadelProfileCard
 }
@@ -194,8 +195,9 @@ func (e *ProfileCardUpdated) GetEventName() string {
 	return "ProfileCardUpdated"
 }
 
-// RankDataUpdate event.
-// MessageID: k_EMsgGCToClientRankDataUpdate
+// RankDataUpdate is an event delivered by the GC.
+//
+// Message: k_EMsgGCToClientRankDataUpdate (CMsgGCToClientRankDataUpdate).
 type RankDataUpdate struct {
 	protocol.CMsgGCToClientRankDataUpdate
 }
@@ -215,8 +217,8 @@ func (e *RankDataUpdate) GetEventName() string {
 	return "RankDataUpdate"
 }
 
-// SDRTicket event.
-// MessageID: k_EMsgGCToClientSDRTicket
+// SDRTicket is emitted with a Steam Datagram Relay ticket for connecting to
+// a match or hideout server.
 type SDRTicket struct {
 	protocol.CMsgGCToClientSDRTicket
 }
@@ -236,8 +238,9 @@ func (e *SDRTicket) GetEventName() string {
 	return "SDRTicket"
 }
 
-// UpdateHeroReleaseVoteTally event.
-// MessageID: k_EMsgGCToClientUpdateHeroReleaseVoteTally
+// UpdateHeroReleaseVoteTally is an event delivered by the GC.
+//
+// Message: k_EMsgGCToClientUpdateHeroReleaseVoteTally (CMsgGCToClientUpdateHeroReleaseVoteTally).
 type UpdateHeroReleaseVoteTally struct {
 	protocol.CMsgGCToClientUpdateHeroReleaseVoteTally
 }

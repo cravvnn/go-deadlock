@@ -7,11 +7,10 @@ import (
 	"github.com/paralin/go-deadlock/protocol"
 )
 
-// CancelChallenge cancels a challenge.
-// Request ID: k_EMsgClientToGCChallengeCancel
-// Response ID: k_EMsgClientToGCChallengeCancelResponse
-// Request type: CMsgClientToGCChallengeCancel
-// Response type: CMsgClientToGCChallengeCancelResponse
+// CancelChallenge cancels one of your active challenges.
+//
+// The provided challenge must belong to your account. The response reports the
+// result of the cancellation.
 func (d *Deadlock) CancelChallenge(
 	ctx context.Context,
 	challengeID uint64,
@@ -30,11 +29,10 @@ func (d *Deadlock) CancelChallenge(
 	)
 }
 
-// ClaimChallenge claims a challenge.
-// Request ID: k_EMsgClientToGCChallengeClaim
-// Response ID: k_EMsgClientToGCChallengeClaimResponse
-// Request type: CMsgClientToGCChallengeClaim
-// Response type: CMsgClientToGCChallengeClaimResponse
+// ClaimChallenge claims the reward for a completed challenge.
+//
+// Only challenges that have reached the completed state can be claimed. The
+// response reports the result of the claim.
 func (d *Deadlock) ClaimChallenge(
 	ctx context.Context,
 	challengeID uint64,
@@ -53,11 +51,11 @@ func (d *Deadlock) ClaimChallenge(
 	)
 }
 
-// CreateParty creates a party.
-// Request ID: k_EMsgClientToGCPartyCreate
-// Response ID: k_EMsgClientToGCPartyCreateResponse
-// Request type: CMsgClientToGCPartyCreate
-// Response type: CMsgClientToGCPartyCreateResponse
+// CreateParty creates a new party with the given matchmaking options.
+//
+// The party join code is returned in the response, unless party codes are
+// disabled. The created party is also delivered through the SOCache as a
+// CSOCitadelParty object.
 func (d *Deadlock) CreateParty(
 	ctx context.Context,
 	req *protocol.CMsgClientToGCPartyCreate,
@@ -73,11 +71,11 @@ func (d *Deadlock) CreateParty(
 	)
 }
 
-// FindHeroBuilds finds hero builds.
-// Request ID: k_EMsgClientToGCFindHeroBuilds
-// Response ID: k_EMsgClientToGCFindHeroBuildsResponse
-// Request type: CMsgClientToGCFindHeroBuilds
-// Response type: CMsgClientToGCFindHeroBuildsResponse
+// FindHeroBuilds searches published hero builds.
+//
+// At most one filter is meaningful per call: builds by author_account_id, for
+// hero_id, or matching search_text. The response lists the matching builds with
+// their metadata.
 func (d *Deadlock) FindHeroBuilds(
 	ctx context.Context,
 	authorAccountID uint32,
@@ -106,11 +104,8 @@ func (d *Deadlock) FindHeroBuilds(
 	)
 }
 
-// GetAccountLeaderboards gets account leaderboards.
-// Request ID: k_EMsgClientToGCGetAccountLeaderboards
-// Response ID: k_EMsgClientToGCGetAccountLeaderboardsResponse
-// Request type: CMsgClientToGCGetAccountLeaderboards
-// Response type: CMsgClientToGCGetAccountLeaderboardsResponse
+// GetAccountLeaderboards returns the leaderboard placements of an account,
+// one entry per ranked hero leaderboard the account appears on.
 func (d *Deadlock) GetAccountLeaderboards(
 	ctx context.Context,
 	accountID uint32,
@@ -129,11 +124,8 @@ func (d *Deadlock) GetAccountLeaderboards(
 	)
 }
 
-// GetAccountMatchReports gets account match reports.
-// Request ID: k_EMsgClientToGCGetAccountMatchReports
-// Response ID: k_EMsgClientToGCGetAccountMatchReportsResponse
-// Request type: CMsgClientToGCGetAccountMatchReports
-// Response type: CMsgClientToGCGetAccountMatchReportsResponse
+// GetAccountMatchReports fetches the conduct report information tied to a
+// match. Supply the most recent known match_id to page through older entries.
 func (d *Deadlock) GetAccountMatchReports(
 	ctx context.Context,
 	matchID uint64,
@@ -152,11 +144,9 @@ func (d *Deadlock) GetAccountMatchReports(
 	)
 }
 
-// GetAccountStats gets account stats.
-// Request ID: k_EMsgClientToGCGetAccountStats
-// Response ID: k_EMsgClientToGCGetAccountStatsResponse
-// Request type: CMsgClientToGCGetAccountStats
-// Response type: CMsgClientToGCGetAccountStatsResponse
+// GetAccountStats returns the career statistics of an account: wins, losses,
+// kills, deaths, and per-hero aggregates. Accounts other than your own require
+// the owner's privacy settings to allow it.
 func (d *Deadlock) GetAccountStats(
 	ctx context.Context,
 	accountID uint32,
@@ -179,11 +169,8 @@ func (d *Deadlock) GetAccountStats(
 	)
 }
 
-// GetActiveMatches gets active matches.
-// Request ID: k_EMsgClientToGCGetActiveMatches
-// Response ID: k_EMsgClientToGCGetActiveMatchesResponse
-// Request type: CMsgClientToGCGetActiveMatches
-// Response type: CMsgClientToGCGetActiveMatchesResponse
+// GetActiveMatches returns the matches currently in progress that involve
+// your account or party.
 func (d *Deadlock) GetActiveMatches(
 	ctx context.Context,
 ) (*protocol.CMsgClientToGCGetActiveMatchesResponse, error) {
@@ -199,11 +186,8 @@ func (d *Deadlock) GetActiveMatches(
 	)
 }
 
-// GetBook gets a book.
-// Request ID: k_EMsgClientToGCGetBook
-// Response ID: k_EMsgClientToGCGetBookResponse
-// Request type: CMsgClientToGCGetBook
-// Response type: CMsgClientToGCGetBookResponse
+// GetBook returns the full state of an account's hero book, including owned
+// pages and unlock progress, as a CMsgAccountBook.
 func (d *Deadlock) GetBook(
 	ctx context.Context,
 	bookID uint32,
@@ -222,11 +206,8 @@ func (d *Deadlock) GetBook(
 	)
 }
 
-// GetDiscordLink gets a discord link.
-// Request ID: k_EMsgClientToGCGetDiscordLink
-// Response ID: k_EMsgClientToGCGetDiscordLinkResponse
-// Request type: CMsgClientToGCGetDiscordLink
-// Response type: CMsgClientToGCGetDiscordLinkResponse
+// GetDiscordLink returns a single-use URL that links the account to the
+// official Deadlock Discord, valid for the returned number of hours.
 func (d *Deadlock) GetDiscordLink(
 	ctx context.Context,
 ) (*protocol.CMsgClientToGCGetDiscordLinkResponse, error) {
@@ -242,11 +223,9 @@ func (d *Deadlock) GetDiscordLink(
 	)
 }
 
-// GetFriendGameStatus gets friend game status.
-// Request ID: k_EMsgClientToGCGetFriendGameStatus
-// Response ID: k_EMsgClientToGCGetFriendGameStatusResponse
-// Request type: CMsgClientToGCGetFriendGameStatus
-// Response type: CMsgClientToGCGetFriendGameStatusResponse
+// GetFriendGameStatus returns what your Steam friends are currently doing in
+// Deadlock: their game state, party, and lobby. Set include_invited to also see
+// friends who have been invited to your group.
 func (d *Deadlock) GetFriendGameStatus(
 	ctx context.Context,
 	includeInvited bool,
@@ -265,11 +244,8 @@ func (d *Deadlock) GetFriendGameStatus(
 	)
 }
 
-// GetHeroChoice gets a hero choice.
-// Request ID: k_EMsgClientToGCGetHeroChoice
-// Response ID: k_EMsgClientToGCGetHeroChoiceResponse
-// Request type: CMsgClientToGCGetHeroChoice
-// Response type: CMsgClientToGCGetHeroChoiceResponse
+// GetHeroChoice returns the hero you selected for the free hero rotation:
+// the hero ID, its choice slot ID, and how many times the choice has been used.
 func (d *Deadlock) GetHeroChoice(
 	ctx context.Context,
 ) (*protocol.CMsgClientToGCGetHeroChoiceResponse, error) {
@@ -285,11 +261,8 @@ func (d *Deadlock) GetHeroChoice(
 	)
 }
 
-// GetHeroMMRRankings gets hero mmr rankings.
-// Request ID: k_EMsgClientToGCGetHeroMMRRankings
-// Response ID: k_EMsgClientToGCGetHeroMMRRankingsResponse
-// Request type: CMsgClientToGCGetHeroMMRRankings
-// Response type: CMsgClientToGCGetHeroMMRRankingsResponse
+// GetHeroMMRRankings returns the per-hero MMR of an account, relative to the
+// ranked ladder.
 func (d *Deadlock) GetHeroMMRRankings(
 	ctx context.Context,
 	targetAccountID uint32,
@@ -308,11 +281,9 @@ func (d *Deadlock) GetHeroMMRRankings(
 	)
 }
 
-// GetHideoutSDRTicket gets a hideout sdr ticket.
-// Request ID: k_EMsgClientToGCGetHideoutSDRTicket
-// Response ID: k_EMsgClientToGCGetHideoutSDRTicketResponse
-// Request type: CMsgClientToGCGetHideoutSDRTicket
-// Response type: CMsgClientToGCGetHideoutSDRTicketResponse
+// GetHideoutSDRTicket requests a Steam Datagram Relay ticket for connecting
+// to a hideout (sandbox lobby) server. The ticket is returned as raw bytes; an
+// error message is set instead if the ticket cannot be issued.
 func (d *Deadlock) GetHideoutSDRTicket(
 	ctx context.Context,
 	lobbyID uint64,
@@ -331,11 +302,8 @@ func (d *Deadlock) GetHideoutSDRTicket(
 	)
 }
 
-// GetLeaderboard gets a leaderboard.
-// Request ID: k_EMsgClientToGCGetLeaderboard
-// Response ID: k_EMsgClientToGCGetLeaderboardResponse
-// Request type: CMsgClientToGCGetLeaderboard
-// Response type: CMsgClientToGCGetLeaderboardResponse
+// GetLeaderboard returns the calling account's placement on the leaderboard
+// for the given region and hero: position, badge level, and display name.
 func (d *Deadlock) GetLeaderboard(
 	ctx context.Context,
 	leaderboardRegion protocol.ECitadelLeaderboardRegion,
@@ -356,11 +324,10 @@ func (d *Deadlock) GetLeaderboard(
 	)
 }
 
-// GetMatchHistory gets a match history.
-// Request ID: k_EMsgClientToGCGetMatchHistory
-// Response ID: k_EMsgClientToGCGetMatchHistoryResponse
-// Request type: CMsgClientToGCGetMatchHistory
-// Response type: CMsgClientToGCGetMatchHistoryResponse
+// GetMatchHistory returns a page of the account's match history with
+// per-match statistics: result, duration, K/D/A, net worth, hero level, and
+// objective masks. Pass the continue_cursor from the previous response to fetch
+// older matches; game_mode and match_mode narrow the results.
 func (d *Deadlock) GetMatchHistory(
 	ctx context.Context,
 	accountID uint32,
@@ -389,11 +356,9 @@ func (d *Deadlock) GetMatchHistory(
 	)
 }
 
-// GetMatchMetaData gets a match meta data.
-// Request ID: k_EMsgClientToGCGetMatchMetaData
-// Response ID: k_EMsgClientToGCGetMatchMetaDataResponse
-// Request type: CMsgClientToGCGetMatchMetaData
-// Response type: CMsgClientToGCGetMatchMetaDataResponse
+// GetMatchMetaData returns the replay metadata for a match, including the
+// download details needed by replay tools. The metadata_salt is required for
+// recent matches and is distributed with the match result.
 func (d *Deadlock) GetMatchMetaData(
 	ctx context.Context,
 	matchID uint64,
@@ -416,9 +381,10 @@ func (d *Deadlock) GetMatchMetaData(
 	)
 }
 
-// GetProfileCard gets a profile card.
-// Request ID: k_EMsgClientToGCGetProfileCard
-// Request type: CMsgClientToGCGetProfileCard
+// GetProfileCard requests the profile card of an account.
+//
+// The card is not returned directly; watch for a ProfileCardUpdated event after
+// sending this request.
 func (d *Deadlock) GetProfileCard(
 	accountID uint32,
 	devAccessHint bool,
@@ -432,11 +398,9 @@ func (d *Deadlock) GetProfileCard(
 	d.write(uint32(protocol.EGCCitadelClientMessages_k_EMsgClientToGCGetProfileCard), req)
 }
 
-// GetRankData gets a rank data.
-// Request ID: k_EMsgClientToGCGetRankData
-// Response ID: k_EMsgGCToClientGetRankDataResponse
-// Request type: CMsgClientToGCGetRankData
-// Response type: CMsgGCToClientGetRankDataResponse
+// GetRankData returns the local account's ranked state: current rank
+// confidence, calibrated rank confidence, and whether a calibration interval is
+// still required.
 func (d *Deadlock) GetRankData(
 	ctx context.Context,
 ) (*protocol.CMsgGCToClientGetRankDataResponse, error) {
@@ -452,11 +416,8 @@ func (d *Deadlock) GetRankData(
 	)
 }
 
-// GetSurveyQuestion gets a survey question.
-// Request ID: k_EMsgClientToGCGetSurveyQuestion
-// Response ID: k_EMsgClientToGCGetSurveyQuestionResponse
-// Request type: CMsgClientToGCGetSurveyQuestion
-// Response type: CMsgClientToGCGetSurveyQuestionResponse
+// GetSurveyQuestion returns the next survey question to show the player, if
+// one is queued. Submit answers with SubmitSurvey.
 func (d *Deadlock) GetSurveyQuestion(
 	ctx context.Context,
 	devForceNewQuestionType protocol.CMsgSurveyQuestion_EQuestionType,
@@ -475,11 +436,8 @@ func (d *Deadlock) GetSurveyQuestion(
 	)
 }
 
-// GrantForumAccess grants forum access.
-// Request ID: k_EMsgClientToGCGrantForumAccess
-// Response ID: k_EMsgClientToGCGrantForumAccessResponse
-// Request type: CMsgClientToGCGrantForumAccess
-// Response type: CMsgClientToGCGrantForumAccessResponse
+// GrantForumAccess sends a forum access grant request bound to the given
+// email address.
 func (d *Deadlock) GrantForumAccess(
 	ctx context.Context,
 	email string,
@@ -498,11 +456,7 @@ func (d *Deadlock) GrantForumAccess(
 	)
 }
 
-// JoinParty joins a party.
-// Request ID: k_EMsgClientToGCPartyJoin
-// Response ID: k_EMsgClientToGCPartyJoinResponse
-// Request type: CMsgClientToGCPartyJoin
-// Response type: CMsgClientToGCPartyJoinResponse
+// JoinParty joins an existing party by ID.
 func (d *Deadlock) JoinParty(
 	ctx context.Context,
 	partyID uint64,
@@ -525,11 +479,8 @@ func (d *Deadlock) JoinParty(
 	)
 }
 
-// JoinPartyViaCode joins a party via code.
-// Request ID: k_EMsgClientToGCPartyJoinViaCode
-// Response ID: k_EMsgClientToGCPartyJoinViaCodeResponse
-// Request type: CMsgClientToGCPartyJoinViaCode
-// Response type: CMsgClientToGCPartyJoinViaCodeResponse
+// JoinPartyViaCode joins a party using its numeric join code. The matchmaking
+// info describes your client state for the party leader.
 func (d *Deadlock) JoinPartyViaCode(
 	ctx context.Context,
 	joinCode uint64,
@@ -550,11 +501,7 @@ func (d *Deadlock) JoinPartyViaCode(
 	)
 }
 
-// LeaveLobby leaves a lobby.
-// Request ID: k_EMsgClientToGCLeaveLobby
-// Response ID: k_EMsgClientToGCLeaveLobbyResponse
-// Request type: CMsgClientToGCLeaveLobby
-// Response type: CMsgClientToGCLeaveLobbyResponse
+// LeaveLobby leaves the current lobby, if any.
 func (d *Deadlock) LeaveLobby(
 	ctx context.Context,
 	lobbyID uint64,
@@ -574,10 +521,9 @@ func (d *Deadlock) LeaveLobby(
 }
 
 // LeaveParty leaves a party.
-// Request ID: k_EMsgClientToGCPartyLeave
-// Response ID: k_EMsgClientToGCPartyLeaveResponse
-// Request type: CMsgClientToGCPartyLeave
-// Response type: CMsgClientToGCPartyLeaveResponse
+//
+// Sends the GC message k_EMsgClientToGCPartyLeave (CMsgClientToGCPartyLeave) and awaits the response k_EMsgClientToGCPartyLeaveResponse,
+// delivered as *CMsgClientToGCPartyLeaveResponse.
 func (d *Deadlock) LeaveParty(
 	ctx context.Context,
 	partyID uint64,
@@ -596,11 +542,9 @@ func (d *Deadlock) LeaveParty(
 	)
 }
 
-// RecordClientEvents records client events.
-// Request ID: k_EMsgClientToGCRecordClientEvents
-// Response ID: k_EMsgClientToGCRecordClientEventsResponse
-// Request type: CMsgClientToGCRecordClientEvents
-// Response type: CMsgClientToGCRecordClientEventsResponse
+// RecordClientEvents reports client-side account events to the GC for
+// telemetry. The client_event_index and client_run_token de-duplicate retries
+// within a client run.
 func (d *Deadlock) RecordClientEvents(
 	ctx context.Context,
 	events []*protocol.CMsgClientToGCRecordClientEvents_Event,
@@ -621,11 +565,8 @@ func (d *Deadlock) RecordClientEvents(
 	)
 }
 
-// ReportPlayerFromMatch reports a player from match.
-// Request ID: k_EMsgClientToGCReportPlayerFromMatch
-// Response ID: k_EMsgClientToGCReportPlayerFromMatchResponse
-// Request type: CMsgClientToGCReportPlayerFromMatch
-// Response type: CMsgClientToGCReportPlayerFromMatchResponse
+// ReportPlayerFromMatch files a conduct report against a player from a match
+// you participated in. The response confirms the report was recorded.
 func (d *Deadlock) ReportPlayerFromMatch(
 	ctx context.Context,
 	matchID uint64,
@@ -650,11 +591,8 @@ func (d *Deadlock) ReportPlayerFromMatch(
 	)
 }
 
-// RequestDevCheatReports requests dev cheat reports.
-// Request ID: k_EMsgClientToGCDevRequestCheatReports
-// Response ID: k_EMsgClientToGCDevRequestCheatReportsResponse
-// Request type: CMsgClientToGCRequestCheatReports
-// Response type: CMsgClientToGCRequestCheatReportsResponse
+// RequestDevCheatReports asks the GC for cheat-detection data about recent
+// matches. Developer accounts only.
 func (d *Deadlock) RequestDevCheatReports(
 	ctx context.Context,
 ) (*protocol.CMsgClientToGCRequestCheatReportsResponse, error) {
@@ -670,9 +608,8 @@ func (d *Deadlock) RequestDevCheatReports(
 	)
 }
 
-// RequestHeroReleaseVoteTally requests a hero release vote tally.
-// Request ID: k_EMsgClientToGCRequestHeroReleaseVoteTally
-// Request type: CMsgClientToGCRequestHeroReleaseVoteTally
+// RequestHeroReleaseVoteTally returns the current tally of the community hero
+// release vote.
 func (d *Deadlock) RequestHeroReleaseVoteTally(
 	voteRounds []uint32,
 ) {
@@ -682,11 +619,7 @@ func (d *Deadlock) RequestHeroReleaseVoteTally(
 	d.write(uint32(protocol.EGCCitadelClientMessages_k_EMsgClientToGCRequestHeroReleaseVoteTally), req)
 }
 
-// RequestModerator requests a moderator.
-// Request ID: k_EMsgClientToGCModeratorRequest
-// Response ID: k_EMsgClientToGCModeratorRequestResponse
-// Request type: CMsgClientToGCModeratorRequest
-// Response type: CMsgClientToGCModeratorRequestResponse
+// RequestModerator submits a moderator action request against an account.
 func (d *Deadlock) RequestModerator(
 	ctx context.Context,
 	accountID uint32,
@@ -705,11 +638,8 @@ func (d *Deadlock) RequestModerator(
 	)
 }
 
-// SendBookUnlock sends a book unlock.
-// Request ID: k_EMsgClientToGCBookUnlock
-// Response ID: k_EMsgClientToGCBookUnlockResponse
-// Request type: CMsgClientToGCBookUnlock
-// Response type: CMsgClientToGCBookUnlockResponse
+// SendBookUnlock purchases an unlock from the hero book. The expected_cost is
+// checked server-side; the purchase fails if it does not match.
 func (d *Deadlock) SendBookUnlock(
 	ctx context.Context,
 	bookID uint32,
@@ -732,11 +662,8 @@ func (d *Deadlock) SendBookUnlock(
 	)
 }
 
-// SendChallengeActivate sends a challenge activate.
-// Request ID: k_EMsgClientToGCChallengeActivate
-// Response ID: k_EMsgClientToGCChallengeActivateResponse
-// Request type: CMsgClientToGCChallengeActivate
-// Response type: CMsgClientToGCChallengeActivateResponse
+// SendChallengeActivate activates one of your generated challenge choices so
+// it starts tracking progress.
 func (d *Deadlock) SendChallengeActivate(
 	ctx context.Context,
 	challengeID uint64,
@@ -755,11 +682,8 @@ func (d *Deadlock) SendChallengeActivate(
 	)
 }
 
-// SendCommendPlayerFromMatch sends a commend player from match.
-// Request ID: k_EMsgClientToGCCommendPlayerFromMatch
-// Response ID: k_EMsgClientToGCCommendPlayerFromMatchResponse
-// Request type: CMsgClientToGCCommendPlayerFromMatch
-// Response type: CMsgClientToGCCommendPlayerFromMatchResponse
+// SendCommendPlayerFromMatch sends a commend for a player from a match you
+// played together. The GC delivers a CommendNotification event to the target.
 func (d *Deadlock) SendCommendPlayerFromMatch(
 	ctx context.Context,
 	matchID uint64,
@@ -784,11 +708,8 @@ func (d *Deadlock) SendCommendPlayerFromMatch(
 	)
 }
 
-// SendDeleteHeroBuild sends a delete hero build.
-// Request ID: k_EMsgClientToGCDeleteHeroBuild
-// Response ID: k_EMsgClientToGCDeleteHeroBuildResponse
-// Request type: CMsgClientToGCDeleteHeroBuild
-// Response type: CMsgClientToGCDeleteHeroBuildResponse
+// SendDeleteHeroBuild deletes one of your published hero builds. You must be
+// the author of the build.
 func (d *Deadlock) SendDeleteHeroBuild(
 	ctx context.Context,
 	authorAccountID uint32,
@@ -809,11 +730,7 @@ func (d *Deadlock) SendDeleteHeroBuild(
 	)
 }
 
-// SendDevAction sends a dev action.
-// Request ID: k_EMsgClientToGCDevAction
-// Response ID: k_EMsgClientToGCDevActionResponse
-// Request type: CMsgClientToGCDevAction
-// Response type: CMsgClientToGCDevActionResponse
+// SendDevAction runs a developer-only GC action. Developer accounts only.
 func (d *Deadlock) SendDevAction(
 	ctx context.Context,
 	action protocol.CMsgClientToGCDevAction_EAction,
@@ -844,11 +761,8 @@ func (d *Deadlock) SendDevAction(
 	)
 }
 
-// SendIsInMatchmaking sends a is in matchmaking.
-// Request ID: k_EMsgClientToGCIsInMatchmaking
-// Response ID: k_EMsgClientToGCIsInMatchmakingResponse
-// Request type: CMsgClientToGCIsInMatchmaking
-// Response type: CMsgClientToGCIsInMatchmakingResponse
+// SendIsInMatchmaking checks whether the account is currently in the
+// matchmaking queue. The response carries the queue state.
 func (d *Deadlock) SendIsInMatchmaking(
 	ctx context.Context,
 ) (*protocol.CMsgClientToGCIsInMatchmakingResponse, error) {
@@ -864,11 +778,8 @@ func (d *Deadlock) SendIsInMatchmaking(
 	)
 }
 
-// SendModifyDevAnnouncements sends modify dev announcements.
-// Request ID: k_EMsgClientToGCModifyDevAnnouncements
-// Response ID: k_EMsgClientToGCModifyDevAnnouncementsResponse
-// Request type: CMsgClientToGCModifyDevAnnouncements
-// Response type: CMsgClientToGCModifyDevAnnouncementsResponse
+// SendModifyDevAnnouncements creates, updates, or removes in-client
+// announcements. Developer accounts only.
 func (d *Deadlock) SendModifyDevAnnouncements(
 	ctx context.Context,
 	operation protocol.CMsgClientToGCModifyDevAnnouncements_EOperation,
@@ -899,11 +810,9 @@ func (d *Deadlock) SendModifyDevAnnouncements(
 	)
 }
 
-// SendPartyAction sends a party action.
-// Request ID: k_EMsgClientToGCPartyAction
-// Response ID: k_EMsgClientToGCPartyActionResponse
-// Request type: CMsgClientToGCPartyAction
-// Response type: CMsgClientToGCPartyActionResponse
+// SendPartyAction performs an action on a party member, such as kicking or
+// promoting. See CMsgClientToGCPartyAction.EAction for the available actions;
+// the response reports the outcome.
 func (d *Deadlock) SendPartyAction(
 	ctx context.Context,
 	partyID uint64,
@@ -932,11 +841,7 @@ func (d *Deadlock) SendPartyAction(
 	)
 }
 
-// SendPartyChatMsg sends a party chat msg.
-// Request ID: k_EMsgClientToGCPartySendChatMsg
-// Response ID: k_EMsgClientToGCPartySendChatMsgResponse
-// Request type: CMsgClientToGCPartySendChatMsg
-// Response type: CMsgClientToGCPartySendChatMsgResponse
+// SendPartyChatMsg sends a chat line to your party members.
 func (d *Deadlock) SendPartyChatMsg(
 	ctx context.Context,
 	partyID uint64,
@@ -957,11 +862,8 @@ func (d *Deadlock) SendPartyChatMsg(
 	)
 }
 
-// SendPartyInviteUser sends a party invite user.
-// Request ID: k_EMsgClientToGCPartyInviteUser
-// Response ID: k_EMsgClientToGCPartyInviteUserResponse
-// Request type: CMsgClientToGCPartyInviteUser
-// Response type: CMsgClientToGCPartyInviteUserResponse
+// SendPartyInviteUser invites an account to your party. The invitee responds
+// through the party invite flow.
 func (d *Deadlock) SendPartyInviteUser(
 	ctx context.Context,
 	partyID uint64,
@@ -982,11 +884,8 @@ func (d *Deadlock) SendPartyInviteUser(
 	)
 }
 
-// SendReplacementSDRTicket sends a replacement sdr ticket.
-// Request ID: k_EMsgClientToGCReplacementSDRTicket
-// Response ID: k_EMsgClientToGCReplacementSDRTicketResponse
-// Request type: CMsgClientToGCReplacementSDRTicket
-// Response type: CMsgClientToGCReplacementSDRTicketResponse
+// SendReplacementSDRTicket requests a replacement Steam Datagram Relay ticket
+// for a match or lobby connection whose ticket expired or was lost.
 func (d *Deadlock) SendReplacementSDRTicket(
 	ctx context.Context,
 	lobbyID uint64,
@@ -1005,11 +904,7 @@ func (d *Deadlock) SendReplacementSDRTicket(
 	)
 }
 
-// SendUnlockHero sends a unlock hero.
-// Request ID: k_EMsgClientToGCUnlockHero
-// Response ID: k_EMsgClientToGCUnlockHeroResponse
-// Request type: CMsgClientToGCUnlockHero
-// Response type: CMsgClientToGCUnlockHeroResponse
+// SendUnlockHero spends a hero unlock credit on the chosen hero.
 func (d *Deadlock) SendUnlockHero(
 	ctx context.Context,
 	heroIDs []uint32,
@@ -1030,11 +925,8 @@ func (d *Deadlock) SendUnlockHero(
 	)
 }
 
-// SendUpdateAccountSync sends a update account sync.
-// Request ID: k_EMsgClientToGCUpdateAccountSync
-// Response ID: k_EMsgClientToGCUpdateAccountSyncResponse
-// Request type: CMsgClientToGCUpdateAccountSync
-// Response type: CMsgClientToGCUpdateAccountSyncResponse
+// SendUpdateAccountSync pushes updated CSOAccountSyncStorage values to the
+// GC. The response confirms the sync.
 func (d *Deadlock) SendUpdateAccountSync(
 	ctx context.Context,
 	ids []uint32,
@@ -1055,11 +947,7 @@ func (d *Deadlock) SendUpdateAccountSync(
 	)
 }
 
-// SendUpdateHeroBuild sends a update hero build.
-// Request ID: k_EMsgClientToGCUpdateHeroBuild
-// Response ID: k_EMsgClientToGCUpdateHeroBuildResponse
-// Request type: CMsgClientToGCUpdateHeroBuild
-// Response type: CMsgClientToGCUpdateHeroBuildResponse
+// SendUpdateHeroBuild creates or updates one of your published hero builds.
 func (d *Deadlock) SendUpdateHeroBuild(
 	ctx context.Context,
 	heroBuild protocol.CMsgHeroBuild,
@@ -1078,11 +966,8 @@ func (d *Deadlock) SendUpdateHeroBuild(
 	)
 }
 
-// SendUpdateHeroBuildPreference sends a update hero build preference.
-// Request ID: k_EMsgClientToGCUpdateHeroBuildPreference
-// Response ID: k_EMsgClientToGCUpdateHeroBuildPreferenceResponse
-// Request type: CMsgClientToGCUpdateHeroBuildPreference
-// Response type: CMsgClientToGCUpdateHeroBuildPreferenceResponse
+// SendUpdateHeroBuildPreference sets which published build you follow for a
+// hero.
 func (d *Deadlock) SendUpdateHeroBuildPreference(
 	ctx context.Context,
 	heroBuildID uint32,
@@ -1103,11 +988,8 @@ func (d *Deadlock) SendUpdateHeroBuildPreference(
 	)
 }
 
-// SendUpdateRoster sends a update roster.
-// Request ID: k_EMsgClientToGCUpdateRoster
-// Response ID: k_EMsgClientToGCUpdateRosterResponse
-// Request type: CMsgClientToGCUpdateRoster
-// Response type: CMsgClientToGCUpdateRosterResponse
+// SendUpdateRoster updates your hero selection roster before entering a
+// matchmaking queue.
 func (d *Deadlock) SendUpdateRoster(
 	ctx context.Context,
 	heroes protocol.CMsgHeroSelectionMatchInfo,
@@ -1130,9 +1012,8 @@ func (d *Deadlock) SendUpdateRoster(
 	)
 }
 
-// SendUpdateSpectatorStatus sends update spectator status.
-// Request ID: k_EMsgClientToGCUpdateSpectatorStatus
-// Request type: CMsgClientToGCUpdateSpectatorStatus
+// SendUpdateSpectatorStatus tells the GC which lobby you are spectating, or
+// clears it with stopped_spectating.
 func (d *Deadlock) SendUpdateSpectatorStatus(
 	spectatingLobbyID uint64,
 	stoppedSpectating bool,
@@ -1144,11 +1025,8 @@ func (d *Deadlock) SendUpdateSpectatorStatus(
 	d.write(uint32(protocol.EGCCitadelClientMessages_k_EMsgClientToGCUpdateSpectatorStatus), req)
 }
 
-// SetAccountPrivacySetting sets a account privacy setting.
-// Request ID: k_EMsgClientToGCSetAccountPrivacySetting
-// Response ID: k_EMsgClientToGCSetAccountPrivacySettingResponse
-// Request type: CMsgClientToGCSetAccountPrivacySetting
-// Response type: CMsgClientToGCSetAccountPrivacySettingResponse
+// SetAccountPrivacySetting changes who can view your profile card and
+// stats.
 func (d *Deadlock) SetAccountPrivacySetting(
 	ctx context.Context,
 	privacySetting protocol.CSOGameAccountClient_EPrivacySetting,
@@ -1167,11 +1045,8 @@ func (d *Deadlock) SetAccountPrivacySetting(
 	)
 }
 
-// SetChallengeGenerate sets a challenge generate.
-// Request ID: k_EMsgClientToGCGenerateChallengeSet
-// Response ID: k_EMsgClientToGCGenerateChallengeSetResponse
-// Request type: CMsgClientToGCGenerateChallengeSet
-// Response type: CMsgClientToGCGenerateChallengeSetResponse
+// SetChallengeGenerate generates a fresh set of challenge choices to replace
+// your current ones.
 func (d *Deadlock) SetChallengeGenerate(
 	ctx context.Context,
 ) (*protocol.CMsgClientToGCGenerateChallengeSetResponse, error) {
@@ -1187,9 +1062,8 @@ func (d *Deadlock) SetChallengeGenerate(
 	)
 }
 
-// SetDevMMBias sets dev mm bias.
-// Request ID: k_EMsgClientToGCDevSetMMBias
-// Request type: CMsgClientToGCDevSetMMBias
+// SetDevMMBias biases matchmaking for an account toward a skill value.
+// Developer accounts only.
 func (d *Deadlock) SetDevMMBias(
 	accountID uint32,
 	value uint32,
@@ -1201,11 +1075,8 @@ func (d *Deadlock) SetDevMMBias(
 	d.write(uint32(protocol.EGCCitadelClientMessages_k_EMsgClientToGCDevSetMMBias), req)
 }
 
-// SetNewPlayerProgress sets new player progress.
-// Request ID: k_EMsgClientToGCSetNewPlayerProgress
-// Response ID: k_EMsgClientToGCSetNewPlayerProgressResponse
-// Request type: CMsgClientToGCSetNewPlayerProgress
-// Response type: CMsgClientToGCSetNewPlayerProgressResponse
+// SetNewPlayerProgress marks a new-player progression milestone complete,
+// such as finishing the tutorial or unlocking ranked play.
 func (d *Deadlock) SetNewPlayerProgress(
 	ctx context.Context,
 	flag protocol.ECitadelNewPlayerProgressFlag,
@@ -1224,11 +1095,8 @@ func (d *Deadlock) SetNewPlayerProgress(
 	)
 }
 
-// SetPartyMode sets a party mode.
-// Request ID: k_EMsgClientToGCPartySetMode
-// Response ID: k_EMsgClientToGCPartySetModeResponse
-// Request type: CMsgClientToGCPartySetMode
-// Response type: CMsgClientToGCPartySetModeResponse
+// SetPartyMode configures the party's matchmaking settings: match mode, game
+// mode, bot difficulty, and region.
 func (d *Deadlock) SetPartyMode(
 	ctx context.Context,
 	partyID uint64,
@@ -1257,11 +1125,8 @@ func (d *Deadlock) SetPartyMode(
 	)
 }
 
-// SetPartyReadyState sets a party ready state.
-// Request ID: k_EMsgClientToGCPartySetReadyState
-// Response ID: k_EMsgClientToGCPartySetReadyStateResponse
-// Request type: CMsgClientToGCPartySetReadyState
-// Response type: CMsgClientToGCPartySetReadyStateResponse
+// SetPartyReadyState marks you ready (or not ready) for the party's next
+// match, along with the hero roster you intend to play.
 func (d *Deadlock) SetPartyReadyState(
 	ctx context.Context,
 	partyID uint64,
@@ -1284,11 +1149,8 @@ func (d *Deadlock) SetPartyReadyState(
 	)
 }
 
-// SetServerConVar sets a server con var.
-// Request ID: k_EMsgClientToGCSetServerConVar
-// Response ID: k_EMsgClientToGCSetServerConVarResponse
-// Request type: CMsgClientToGCSetServerConVar
-// Response type: CMsgClientToGCSetServerConVarResponse
+// SetServerConVar sets a console variable on a practice lobby server.
+// Developer accounts only.
 func (d *Deadlock) SetServerConVar(
 	ctx context.Context,
 	convarName string,
@@ -1311,11 +1173,8 @@ func (d *Deadlock) SetServerConVar(
 	)
 }
 
-// SpectateLobby spectates a lobby.
-// Request ID: k_EMsgClientToGCSpectateLobby
-// Response ID: k_EMsgClientToGCSpectateLobbyResponse
-// Request type: CMsgClientToGCSpectateLobby
-// Response type: CMsgClientToGCSpectateLobbyResponse
+// SpectateLobby requests to spectate a lobby. The response carries the
+// connection details for the spectator broadcast.
 func (d *Deadlock) SpectateLobby(
 	ctx context.Context,
 	lobbyID uint64,
@@ -1338,11 +1197,8 @@ func (d *Deadlock) SpectateLobby(
 	)
 }
 
-// SpectateUser spectates a user.
-// Request ID: k_EMsgClientToGCSpectateUser
-// Response ID: k_EMsgClientToGCSpectateUserResponse
-// Request type: CMsgClientToGCSpectateUser
-// Response type: CMsgClientToGCSpectateUserResponse
+// SpectateUser requests to spectate the live game of an account. The response
+// carries the connection details, or an error if no game is running.
 func (d *Deadlock) SpectateUser(
 	ctx context.Context,
 	spectateAccountID uint32,
@@ -1363,11 +1219,9 @@ func (d *Deadlock) SpectateUser(
 	)
 }
 
-// StartMatchmaking starts a matchmaking.
-// Request ID: k_EMsgClientToGCStartMatchmaking
-// Response ID: k_EMsgClientToGCStartMatchmakingResponse
-// Request type: CMsgClientToGCStartMatchmaking
-// Response type: CMsgClientToGCStartMatchmakingResponse
+// StartMatchmaking enters the matchmaking queue with the given match info,
+// region ping times, and hero roster. The response confirms the queue state.
+// Watch for MatchmakingStopped events for asynchronous cancellation.
 func (d *Deadlock) StartMatchmaking(
 	ctx context.Context,
 	clientPlatform protocol.EGCPlatform,
@@ -1394,11 +1248,8 @@ func (d *Deadlock) StartMatchmaking(
 	)
 }
 
-// StartPartyMatch starts a party match.
-// Request ID: k_EMsgClientToGCPartyStartMatch
-// Response ID: k_EMsgClientToGCPartyStartMatchResponse
-// Request type: CMsgClientToGCPartyStartMatch
-// Response type: CMsgClientToGCPartyStartMatchResponse
+// StartPartyMatch starts the search for a match on behalf of the whole
+// party. Party leaders only.
 func (d *Deadlock) StartPartyMatch(
 	ctx context.Context,
 	partyID uint64,
@@ -1417,11 +1268,8 @@ func (d *Deadlock) StartPartyMatch(
 	)
 }
 
-// StartRankedInterval starts a ranked interval.
-// Request ID: k_EMsgClientToGCStartRankedInterval
-// Response ID: k_EMsgClientToGCStartRankedIntervalResponse
-// Request type: CMsgClientToGCStartRankedInterval
-// Response type: CMsgClientToGCStartRankedIntervalResponse
+// StartRankedInterval begins a ranked calibration interval. The response
+// reports the new ranked state.
 func (d *Deadlock) StartRankedInterval(
 	ctx context.Context,
 	rankType protocol.ECitadelRankedType,
@@ -1442,11 +1290,8 @@ func (d *Deadlock) StartRankedInterval(
 	)
 }
 
-// StopMatchmaking stops a matchmaking.
-// Request ID: k_EMsgClientToGCStopMatchmaking
-// Response ID: k_EMsgClientToGCStopMatchmakingResponse
-// Request type: CMsgClientToGCStopMatchmaking
-// Response type: CMsgClientToGCStopMatchmakingResponse
+// StopMatchmaking leaves the matchmaking queue. A MatchmakingStopped event
+// confirms the exit.
 func (d *Deadlock) StopMatchmaking(
 	ctx context.Context,
 ) (*protocol.CMsgClientToGCStopMatchmakingResponse, error) {
@@ -1462,9 +1307,8 @@ func (d *Deadlock) StopMatchmaking(
 	)
 }
 
-// SubmitHeroReleaseVote submits a hero release vote.
-// Request ID: k_EMsgClientToGCSubmitHeroReleaseVote
-// Request type: CMsgClientToGCSubmitHeroReleaseVote
+// SubmitHeroReleaseVote casts a vote in the community hero release vote for
+// the given round.
 func (d *Deadlock) SubmitHeroReleaseVote(
 	voteRound uint32,
 	voteOption uint32,
@@ -1476,11 +1320,8 @@ func (d *Deadlock) SubmitHeroReleaseVote(
 	d.write(uint32(protocol.EGCCitadelClientMessages_k_EMsgClientToGCSubmitHeroReleaseVote), req)
 }
 
-// SubmitPlaytestUser submits a playtest user.
-// Request ID: k_EMsgClientToGCSubmitPlaytestUser
-// Response ID: k_EMsgClientToGCSubmitPlaytestUserResponse
-// Request type: CMsgClientToGCSubmitPlaytestUser
-// Response type: CMsgClientToGCSubmitPlaytestUserResponse
+// SubmitPlaytestUser registers an account for a playtest session at the
+// given location. Developer accounts only.
 func (d *Deadlock) SubmitPlaytestUser(
 	ctx context.Context,
 	location string,
@@ -1501,11 +1342,8 @@ func (d *Deadlock) SubmitPlaytestUser(
 	)
 }
 
-// SubmitSurvey submits a survey.
-// Request ID: k_EMsgClientToGCSubmitSurvey
-// Response ID: k_EMsgClientToGCSubmitSurveyResponse
-// Request type: CMsgClientToGCSubmitSurvey
-// Response type: CMsgClientToGCSubmitSurveyResponse
+// SubmitSurvey answers a survey question previously delivered through
+// GetSurveyQuestion. Set is_skip to decline without answering.
 func (d *Deadlock) SubmitSurvey(
 	ctx context.Context,
 	questionID uint32,
