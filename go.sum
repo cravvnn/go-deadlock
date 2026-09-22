@@ -4,6 +4,8 @@ github.com/aperturerobotics/cli v1.1.0 h1:7a+YRC+EY3npAnTzhHV5gLCiw91KS0Ts3XwLIL
 github.com/aperturerobotics/cli v1.1.0/go.mod h1:M7BFP9wow5ytTzMyJQOOO991fGfsUqdTI7gGEsHfTQ8=
 github.com/aperturerobotics/common v0.35.2 h1:22QZHrc4TcWxufAZ/ZLyA4aFw7qXnnfnZyYx8QasDTs=
 github.com/aperturerobotics/common v0.35.2/go.mod h1:/sl0p5kW3P3I68AFSlr+KCQju14aUQuCdnxMJ+vzJF8=
+github.com/aperturerobotics/fastjson v0.1.2-0.20260705010846-94f343f5bb34 h1:F8iJTYsJtJHB7e+/Mf72RLYwZB/1VXXC2ppxPlfipXo=
+github.com/aperturerobotics/fastjson v0.1.2-0.20260705010846-94f343f5bb34/go.mod h1:ArP9Q7MVDi8jMPR3ljopH5drxs/qen12Hv2L7qRcPb4=
 github.com/aperturerobotics/go-protoc-gen-prost v0.0.0-20260705010911-9f53feac967b h1:MMk+AbWPCMfqc2Lm2bJl8lCCsuvlM2+C0CP10fpE3bc=
 github.com/aperturerobotics/go-protoc-gen-prost v0.0.0-20260705010911-9f53feac967b/go.mod h1:OBb/beWmr/pDIZAUfi86j/4tBh2v5ctTxKMqSnh9c/4=
 github.com/aperturerobotics/go-protoc-wasi v0.0.0-20260808023521-7b1595380c3f h1:UszdpmKBfQd0LdOZjypeRGrHz2tcPpmKpw6SV3DYyN0=
@@ -14,6 +16,8 @@ github.com/aperturerobotics/protobuf v0.0.0-20260203024654-8201686529c4 h1:4Dy3B
 github.com/aperturerobotics/protobuf v0.0.0-20260203024654-8201686529c4/go.mod h1:tMgO7y6SJo/d9ZcvrpNqIQtdYT9de+QmYaHOZ4KnhOg=
 github.com/aperturerobotics/protobuf-go-lite v0.17.0 h1:paEC3KNvw+JnIyKAQZlMLh2h4nY6P/Hm0oc20eubYe4=
 github.com/aperturerobotics/protobuf-go-lite v0.17.0/go.mod h1:3Ay/E7iaw2KWLirK3+dDdNJZHK0hu8Y1/kKeYeUa+8s=
+github.com/aperturerobotics/protobuf-go-lite v0.18.0 h1:M4ylc1wvu6hjwU6bSsfgYhdxCbaBaITp0cJbFFQHgOs=
+github.com/aperturerobotics/protobuf-go-lite v0.18.0/go.mod h1:3Ay/E7iaw2KWLirK3+dDdNJZHK0hu8Y1/kKeYeUa+8s=
 github.com/aperturerobotics/starpc v0.52.0/go.mod h1:MQ53YX6Ntb96Uy8LDEQ6QfLtk32oiqI5NRmePm/fLwE=
 github.com/aperturerobotics/util v1.34.9/go.mod h1:GxjGkYQNEj8xvLFz+T8ifqANtK5cMesOlCxh50htvBI=
 github.com/cpuguy83/go-md2man/v2 v2.0.7 h1:zbFlGlXEAKlwXpmvle3d8Oe3YnkKIK4xSRTd3sHPnBo=
@@ -56,6 +60,8 @@ github.com/onsi/gomega v1.10.1 h1:o0+MgICZLuZ7xjH7Vx6zS/zcu93/BEp1VwkIW1mEXCE=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/paralin/go-steam v0.0.0-20260627093619-6b06e91640b1 h1:elw8kZSd4aBwhp+4Q6Qsy2OFimhKIVt7qwjNRUc2re8=
 github.com/paralin/go-steam v0.0.0-20260627093619-6b06e91640b1/go.mod h1:KBuqfbUuB30OSp5ZbPDVHR5lKUPQADt9uD9M3LPx+70=
+github.com/paralin/go-steam v0.0.0-20260922055213-e882f1724962 h1:TY+okn4cN5HRcJ+pQuWJuu+/dX0CYv7RyQDaHhb0STM=
+github.com/paralin/go-steam v0.0.0-20260922055213-e882f1724962/go.mod h1:00smpLjm6VAbso/DAOPbI+AGqz7JsxC8bu4kozb59d0=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

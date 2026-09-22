@@ -3,8 +3,8 @@ module github.com/paralin/go-deadlock
 go 1.25.0
 
 require (
-	github.com/aperturerobotics/protobuf-go-lite v0.17.0
-	github.com/paralin/go-steam v0.0.0-20260627093619-6b06e91640b1 // master
+	github.com/aperturerobotics/protobuf-go-lite v0.18.0
+	github.com/paralin/go-steam v0.0.0-20260922055213-e882f1724962 // master
 )
 
 require (
@@ -19,6 +19,7 @@ require (
 
 require (
 	github.com/aperturerobotics/common v0.35.2 // indirect
+	github.com/aperturerobotics/fastjson v0.1.2-0.20260705010846-94f343f5bb34 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.7 // indirect
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.10.1 // indirect
