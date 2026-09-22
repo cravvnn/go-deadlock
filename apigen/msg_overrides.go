@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/golang/protobuf/proto"
+	protobuf "github.com/aperturerobotics/protobuf-go-lite"
 
 	dm "github.com/paralin/go-deadlock/protocol"
 )
@@ -47,7 +47,7 @@ var msgResponseOverrides = map[dm.EGCCitadelClientMessages]dm.EGCCitadelClientMe
 }
 
 // msgProtoTypeOverrides overrides the proto type used for a message ID.
-var msgProtoTypeOverrides = map[dm.EGCCitadelClientMessages]proto.Message{
+var msgProtoTypeOverrides = map[dm.EGCCitadelClientMessages]protobuf.Message{
 	// The profile card update reuses the profile card message.
 	dm.EGCCitadelClientMessages_k_EMsgGCToClientProfileCardUpdated: &dm.CMsgCitadelProfileCard{},
 	// The cheat report messages drop their Dev prefix in the proto names.

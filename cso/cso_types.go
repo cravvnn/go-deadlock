@@ -1,7 +1,7 @@
 package cso
 
 import (
-	"github.com/golang/protobuf/proto"
+	protobuf "github.com/aperturerobotics/protobuf-go-lite"
 	bgcm "github.com/paralin/go-deadlock/protocol"
 	"github.com/pkg/errors"
 )
@@ -27,17 +27,17 @@ const (
 // from a live session and register them here.
 
 // csoTypeCtors links type IDs to constructors.
-var csoTypeCtors = map[CSOType]func() proto.Message{
-	EconItem: func() proto.Message {
+var csoTypeCtors = map[CSOType]func() protobuf.Message{
+	EconItem: func() protobuf.Message {
 		return &bgcm.CSOEconItem{}
 	},
-	EconGameAccountClient: func() proto.Message {
+	EconGameAccountClient: func() protobuf.Message {
 		return &bgcm.CSOEconGameAccountClient{}
 	},
 }
 
 // NewSharedObject builds a new shared object from a type ID.
-func NewSharedObject(typ CSOType) (proto.Message, error) {
+func NewSharedObject(typ CSOType) (protobuf.Message, error) {
 	ctor, ok := csoTypeCtors[typ]
 	if !ok {
 		return nil, errors.Errorf("unknown shared object type id: %d", typ)

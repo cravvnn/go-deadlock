@@ -1,7 +1,7 @@
 package events
 
 import (
-	"github.com/golang/protobuf/proto"
+	protobuf "github.com/aperturerobotics/protobuf-go-lite"
 	"github.com/paralin/go-deadlock/protocol"
 )
 
@@ -9,8 +9,8 @@ import (
 type Event interface {
 	// GetDeadlockEventMsgID returns the deadlock event message ID.
 	GetDeadlockEventMsgID() protocol.EGCCitadelClientMessages
-	// GetEventBody event body.
-	GetEventBody() proto.Message
+	// GetEventBody returns the generated lite message.
+	GetEventBody() protobuf.Message
 	// GetEventName returns the event name.
 	GetEventName() string
 }

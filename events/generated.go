@@ -1,7 +1,7 @@
 package events
 
 import (
-	"github.com/golang/protobuf/proto"
+	protobuf_go_lite "github.com/aperturerobotics/protobuf-go-lite"
 	"github.com/paralin/go-deadlock/protocol"
 )
 
@@ -17,7 +17,7 @@ func (e *BookUpdated) GetDeadlockEventMsgID() protocol.EGCCitadelClientMessages 
 }
 
 // GetEventBody returns the event body.
-func (e *BookUpdated) GetEventBody() proto.Message {
+func (e *BookUpdated) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientBookUpdated
 }
 
@@ -38,7 +38,7 @@ func (e *CanRejoinParty) GetDeadlockEventMsgID() protocol.EGCCitadelClientMessag
 }
 
 // GetEventBody returns the event body.
-func (e *CanRejoinParty) GetEventBody() proto.Message {
+func (e *CanRejoinParty) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientCanRejoinParty
 }
 
@@ -58,7 +58,7 @@ func (e *CommendNotification) GetDeadlockEventMsgID() protocol.EGCCitadelClientM
 }
 
 // GetEventBody returns the event body.
-func (e *CommendNotification) GetEventBody() proto.Message {
+func (e *CommendNotification) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientCommendNotification
 }
 
@@ -78,7 +78,7 @@ func (e *DevAnnouncements) GetDeadlockEventMsgID() protocol.EGCCitadelClientMess
 }
 
 // GetEventBody returns the event body.
-func (e *DevAnnouncements) GetEventBody() proto.Message {
+func (e *DevAnnouncements) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientDevAnnouncements
 }
 
@@ -100,7 +100,7 @@ func (e *DevPlaytestStatus) GetDeadlockEventMsgID() protocol.EGCCitadelClientMes
 }
 
 // GetEventBody returns the event body.
-func (e *DevPlaytestStatus) GetEventBody() proto.Message {
+func (e *DevPlaytestStatus) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientDevPlaytestStatus
 }
 
@@ -122,7 +122,7 @@ func (e *MatchmakingStopped) GetDeadlockEventMsgID() protocol.EGCCitadelClientMe
 }
 
 // GetEventBody returns the event body.
-func (e *MatchmakingStopped) GetEventBody() proto.Message {
+func (e *MatchmakingStopped) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientMatchmakingStopped
 }
 
@@ -144,7 +144,7 @@ func (e *PartyChatMsg) GetDeadlockEventMsgID() protocol.EGCCitadelClientMessages
 }
 
 // GetEventBody returns the event body.
-func (e *PartyChatMsg) GetEventBody() proto.Message {
+func (e *PartyChatMsg) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientPartyChatMsg
 }
 
@@ -165,7 +165,7 @@ func (e *PartyEvent) GetDeadlockEventMsgID() protocol.EGCCitadelClientMessages {
 }
 
 // GetEventBody returns the event body.
-func (e *PartyEvent) GetEventBody() proto.Message {
+func (e *PartyEvent) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientPartyEvent
 }
 
@@ -186,7 +186,7 @@ func (e *ProfileCardUpdated) GetDeadlockEventMsgID() protocol.EGCCitadelClientMe
 }
 
 // GetEventBody returns the event body.
-func (e *ProfileCardUpdated) GetEventBody() proto.Message {
+func (e *ProfileCardUpdated) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgCitadelProfileCard
 }
 
@@ -208,7 +208,7 @@ func (e *RankDataUpdate) GetDeadlockEventMsgID() protocol.EGCCitadelClientMessag
 }
 
 // GetEventBody returns the event body.
-func (e *RankDataUpdate) GetEventBody() proto.Message {
+func (e *RankDataUpdate) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientRankDataUpdate
 }
 
@@ -229,7 +229,7 @@ func (e *SDRTicket) GetDeadlockEventMsgID() protocol.EGCCitadelClientMessages {
 }
 
 // GetEventBody returns the event body.
-func (e *SDRTicket) GetEventBody() proto.Message {
+func (e *SDRTicket) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientSDRTicket
 }
 
@@ -251,7 +251,7 @@ func (e *UpdateHeroReleaseVoteTally) GetDeadlockEventMsgID() protocol.EGCCitadel
 }
 
 // GetEventBody returns the event body.
-func (e *UpdateHeroReleaseVoteTally) GetEventBody() proto.Message {
+func (e *UpdateHeroReleaseVoteTally) GetEventBody() protobuf_go_lite.Message {
 	return &e.CMsgGCToClientUpdateHeroReleaseVoteTally
 }
 

@@ -1,7 +1,7 @@
 package events
 
 import (
-	"github.com/golang/protobuf/proto"
+	protobuf "github.com/aperturerobotics/protobuf-go-lite"
 	bgcm "github.com/paralin/go-deadlock/protocol"
 )
 
@@ -16,7 +16,7 @@ func (e *InvitationCreated) GetDeadlockEventMsgID() bgcm.EGCCitadelClientMessage
 }
 
 // GetEventBody returns the event body.
-func (e *InvitationCreated) GetEventBody() proto.Message {
+func (e *InvitationCreated) GetEventBody() protobuf.Message {
 	return &e.CMsgInvitationCreated
 }
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	"github.com/golang/protobuf/proto"
+	protobuf "github.com/aperturerobotics/protobuf-go-lite"
 	devents "github.com/paralin/go-deadlock/events"
 	gcsm "github.com/paralin/go-deadlock/protocol"
 	"github.com/paralin/go-deadlock/socache"
@@ -60,6 +60,7 @@ func New(client *steam.Client, le logrus.FieldLogger) *Deadlock {
 // NewWithCoordinator attaches a Deadlock session to an alternate GC transport.
 // emit must continuously accept events; Close ends this handler's lifetime.
 func NewWithCoordinator(coordinator Coordinator, emit func(any), le logrus.FieldLogger) *Deadlock {
+	// Construct the session before registering it for incoming packets.
 	c := &Deadlock{
 		le:          le,
 		cache:       socache.NewSOCache(le),
@@ -91,6 +92,7 @@ func (d *Deadlock) Close() {
 
 // buildHandlerMap builds the map of bound handler functions.
 func (d *Deadlock) buildHandlerMap() {
+	// Bind protocol messages handled directly by the session.
 	d.handlers = handlerMap{
 		// Welcome and conn status
 		uint32(gcsm.EGCBaseClientMsg_k_EMsgGCClientWelcome):          d.handleClientWelcome,
@@ -111,31 +113,32 @@ func (d *Deadlock) buildHandlerMap() {
 		}),
 	}
 
+	// Add schema-generated notifications after the core handlers.
 	d.registerGeneratedHandlers()
 }
 
 // write sends a message to the game coordinator.
-func (d *Deadlock) write(messageType uint32, msg proto.Message) {
+func (d *Deadlock) write(messageType uint32, msg protobuf.Message) {
 	d.coordinator.Write(gamecoordinator.NewGCMsgProtobuf(AppID, messageType, msg))
 }
 
 // unmarshalBody attempts to unmarshal a packet body.
-func (d *Deadlock) unmarshalBody(packet *gamecoordinator.GCPacket, msg proto.Message) (parseErr error) {
+func (d *Deadlock) unmarshalBody(packet *gamecoordinator.GCPacket, msg protobuf.Message) (parseErr error) {
+	// Keep decode failures attributable to the incoming message type.
 	defer func() {
 		if parseErr != nil {
 			d.le.WithError(parseErr).WithField("msgtype", packet.MsgType).Warn("unable to parse message")
 		}
 	}()
 
-	if decoder, ok := msg.(interface{ UnmarshalVT([]byte) error }); ok {
-		msg.Reset()
-		return decoder.UnmarshalVT(packet.Body)
-	}
-	return proto.Unmarshal(packet.Body, msg)
+	// Reused response objects must not retain fields absent from this packet.
+	msg.Reset()
+	return msg.UnmarshalVT(packet.Body)
 }
 
 // HandleGCPacket handles an incoming game coordinator packet.
 func (d *Deadlock) HandleGCPacket(packet *gamecoordinator.GCPacket) {
+	// A shared Steam transport can deliver packets for other games.
 	if packet.AppId != AppID {
 		return
 	}
@@ -177,11 +180,13 @@ func (d *Deadlock) handlePingRequest(packet *gamecoordinator.GCPacket) error {
 // getEventEmitter returns a handler that emits an event, used by the generated code.
 func (d *Deadlock) getEventEmitter(ctor func() devents.Event) func(packet *gamecoordinator.GCPacket) error {
 	return func(packet *gamecoordinator.GCPacket) error {
+		// Decode completely before publishing the event.
 		obj := ctor()
 		if err := d.unmarshalBody(packet, obj.GetEventBody()); err != nil {
 			return err
 		}
 
+		// Event consumers receive only successfully decoded messages.
 		d.emit(obj)
 		return nil
 	}

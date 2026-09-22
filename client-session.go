@@ -3,7 +3,6 @@ package deadlock
 import (
 	"context"
 
-	"github.com/golang/protobuf/proto"
 	devents "github.com/paralin/go-deadlock/events"
 	gcsm "github.com/paralin/go-deadlock/protocol"
 	"github.com/paralin/go-steam/protocol/gamecoordinator"
@@ -35,7 +34,7 @@ func (d *Deadlock) SayHello(haveCacheVersions ...*gcsm.CMsgSOCacheHaveVersion) {
 	d.write(uint32(gcsm.EGCBaseClientMsg_k_EMsgGCClientHello), &gcsm.CMsgClientHello{
 		ClientLauncher:      gcsm.PartnerAccountType_PARTNER_NONE.Enum(),
 		Engine:              gcsm.ESourceEngine_k_ESE_Source2.Enum(),
-		ClientSessionNeed:   proto.Uint32(104),
+		ClientSessionNeed:   new(uint32(104)),
 		SocacheHaveVersions: haveCacheVersions,
 	})
 }
