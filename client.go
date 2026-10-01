@@ -111,6 +111,11 @@ func (d *Deadlock) buildHandlerMap() {
 		uint32(gcsm.EGCBaseMsg_k_EMsgGCInvitationCreated): d.getEventEmitter(func() devents.Event {
 			return &devents.InvitationCreated{}
 		}),
+
+		// Game updates
+		uint32(gcsm.EGCItemMsg_k_EMsgGCClientVersionUpdated): d.getEventEmitter(func() devents.Event {
+			return &devents.ClientVersionUpdated{}
+		}),
 	}
 
 	// Add schema-generated notifications after the core handlers.
